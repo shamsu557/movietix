@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark" style="height: auto; min-height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieTix - Movie Reservation System</title>
+    <title>Silver Screen Cinemas - Kano</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +43,9 @@
 
 <script>
     let currentUser = null;
-    let selectedLocation = 'Abuja';
+    const CINEMA_NAME = 'Silver Screen Cinemas';
+    const LOCATION = 'Kano - Shoprite';
+    let selectedLocation = LOCATION;
     let mobileMenuOpen = false;
     let sidebarOpen = true;
     let currentAdminTab = 'movies';
@@ -52,8 +53,8 @@
     let authMode = 'signin';
     let booking = {
         movie: null,
-        location: 'Abuja',
-        cinema: null,
+        location: LOCATION,
+        cinema: CINEMA_NAME,
         date: null,
         time: null,
         seats: [],
@@ -126,22 +127,22 @@
     ];
 
     const mockBookings = [
-        { id: 'MTX-847291', movie: 'Dune: Part Two', user: 'Sabo Ahmed', date: 'Jan 18, 2026', time: '7:45 PM', seats: 'A5, A6', amount: 5600, status: 'Confirmed' },
-        { id: 'MTX-847290', movie: 'Oppenheimer', user: 'Amina Bello', date: 'Jan 17, 2026', time: '4:30 PM', seats: 'B3', amount: 2800, status: 'Confirmed' },
-        { id: 'MTX-847289', movie: 'The Dark Knight', user: 'Chidi Okafor', date: 'Jan 17, 2026', time: '10:00 PM', seats: 'C1, C2, C3', amount: 8400, status: 'Confirmed' },
-        { id: 'MTX-847288', movie: 'Inception', user: 'Fatima Yusuf', date: 'Jan 16, 2026', time: '1:15 PM', seats: 'D4', amount: 2800, status: 'Cancelled' },
-        { id: 'MTX-847287', movie: 'Dune: Part Two', user: 'Emeka Nwosu', date: 'Jan 15, 2026', time: '7:45 PM', seats: 'B7, B8', amount: 5600, status: 'Confirmed' }
+        { id: 'SSC-847291', movie: 'Dune: Part Two', user: 'Sabo Ahmed', date: 'Jan 18, 2026', time: '7:45 PM', seats: 'A5, A6', amount: 5600, status: 'Confirmed' },
+        { id: 'SSC-847290', movie: 'Oppenheimer', user: 'Amina Bello', date: 'Jan 17, 2026', time: '4:30 PM', seats: 'B3', amount: 2800, status: 'Confirmed' },
+        { id: 'SSC-847289', movie: 'The Dark Knight', user: 'Chidi Okafor', date: 'Jan 17, 2026', time: '10:00 PM', seats: 'C1, C2, C3', amount: 8400, status: 'Confirmed' },
+        { id: 'SSC-847288', movie: 'Inception', user: 'Fatima Yusuf', date: 'Jan 16, 2026', time: '1:15 PM', seats: 'D4', amount: 2800, status: 'Cancelled' },
+        { id: 'SSC-847287', movie: 'Dune: Part Two', user: 'Emeka Nwosu', date: 'Jan 15, 2026', time: '7:45 PM', seats: 'B7, B8', amount: 5600, status: 'Confirmed' }
     ];
 
     const userBookingHistory = [
-        { id: 'MTX-847291', movie: 'Dune: Part Two', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80', date: 'Jan 18, 2026', time: '7:45 PM', seats: 'A5, A6', cinema: 'Silverbird Galleria', amount: 5600, status: 'Upcoming' },
-        { id: 'MTX-842156', movie: 'Oppenheimer', poster: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&q=80', date: 'Jan 10, 2026', time: '4:30 PM', seats: 'C3, C4', cinema: 'Genesis Deluxe', amount: 5600, status: 'Completed' },
-        { id: 'MTX-839847', movie: 'The Dark Knight', poster: 'https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80', date: 'Jan 5, 2026', time: '10:00 PM', seats: 'B5', cinema: 'Filmhouse Jabi', amount: 2800, status: 'Completed' }
+        { id: 'SSC-847291', movie: 'Dune: Part Two', poster: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80', date: 'Jan 18, 2026', time: '7:45 PM', seats: 'A5, A6', cinema: CINEMA_NAME, amount: 5600, status: 'Upcoming' },
+        { id: 'SSC-842156', movie: 'Oppenheimer', poster: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&q=80', date: 'Jan 10, 2026', time: '4:30 PM', seats: 'C3, C4', cinema: CINEMA_NAME, amount: 5600, status: 'Completed' },
+        { id: 'SSC-839847', movie: 'The Dark Knight', poster: 'https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&q=80', date: 'Jan 5, 2026', time: '10:00 PM', seats: 'B5', cinema: CINEMA_NAME, amount: 2800, status: 'Completed' }
     ];
 
     const validCredentials = {
-        user: { email: 'user@movietix.com', password: 'user123' },
-        admin: { email: 'admin@movietix.com', password: 'admin123' }
+        user: { email: 'user@silverscreen.com', password: 'user123' },
+        admin: { email: 'admin@silverscreen.com', password: 'admin123' }
     };
 
     function toggleMobileMenu() {
@@ -156,9 +157,12 @@
 
     function toggleSidebar() {
         sidebarOpen = !sidebarOpen;
-        const sidebar = document.querySelector('.dashboard-sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
-        const toggleBtn = document.querySelector('.sidebar-toggle-btn');
+        const activeDashboard = document.querySelector('.dashboard-container:not(.hidden)');
+        if (!activeDashboard) return;
+
+        const sidebar = activeDashboard.querySelector('.dashboard-sidebar');
+        const overlay = activeDashboard.querySelector('.sidebar-overlay');
+        const toggleBtn = activeDashboard.querySelector('.sidebar-toggle-btn');
         
         if (sidebarOpen) {
             sidebar.classList.remove('-translate-x-full');
@@ -181,8 +185,11 @@
     function closeSidebarOnMobile() {
         if (window.innerWidth < 768) {
             sidebarOpen = false;
-            const sidebar = document.querySelector('.dashboard-sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
+            const activeDashboard = document.querySelector('.dashboard-container:not(.hidden)');
+            if (!activeDashboard) return;
+            
+            const sidebar = activeDashboard.querySelector('.dashboard-sidebar');
+            const overlay = activeDashboard.querySelector('.sidebar-overlay');
             if (sidebar) {
                 sidebar.classList.add('-translate-x-full');
                 sidebar.classList.remove('translate-x-0');
@@ -200,7 +207,7 @@
         if (viewId === 'admin-dashboard' || viewId === 'user-dashboard') {
             mainHeader.classList.add('hidden');
             sidebarOpen = window.innerWidth >= 768;
-            const sidebar = document.querySelector('.dashboard-sidebar');
+            const sidebar = el.querySelector('.dashboard-sidebar');
             if (sidebar) {
                 if (sidebarOpen) {
                     sidebar.classList.remove('-translate-x-full');
@@ -238,7 +245,7 @@
             container.innerHTML = `
                 <div class="text-center mb-8">
                     <i data-lucide="film" class="h-12 w-12 text-cinema-accent mx-auto mb-4"></i>
-                    <h2 class="text-3xl font-bold">Welcome Back</h2>
+                    <h2 class="text-3xl font-bold">Silver Screen Cinemas</h2>
                     <p class="text-gray-400 mt-2">Sign in to access your account</p>
                 </div>
                 <div class="bg-cinema-800 rounded-2xl p-8 border border-white/5">
@@ -254,7 +261,7 @@
                         <input type="hidden" id="selected-role" value="user">
                         <div class="mb-4">
                             <label class="block text-sm text-gray-400 mb-2">Email Address</label>
-                            <input type="email" id="signin-email" required class="w-full bg-cinema-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cinema-accent" placeholder="user@movietix.com or admin@movietix.com">
+                            <input type="email" id="signin-email" required class="w-full bg-cinema-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cinema-accent" placeholder="user@silverscreen.com">
                         </div>
                         <div class="mb-4">
                             <label class="block text-sm text-gray-400 mb-2">Password</label>
@@ -274,8 +281,8 @@
                     </div>
                     <div class="mt-6 p-4 bg-cinema-900/50 rounded-lg border border-white/10">
                         <p class="text-xs text-gray-400 mb-2">Demo Credentials:</p>
-                        <p class="text-xs text-gray-300">User: user@movietix.com / user123</p>
-                        <p class="text-xs text-gray-300">Admin: admin@movietix.com / admin123</p>
+                        <p class="text-xs text-gray-300">User: user@silverscreen.com / user123</p>
+                        <p class="text-xs text-gray-300">Admin: admin@silverscreen.com / admin123</p>
                     </div>
                 </div>
             `;
@@ -284,7 +291,7 @@
                 <div class="text-center mb-8">
                     <i data-lucide="user-plus" class="h-12 w-12 text-cinema-accent mx-auto mb-4"></i>
                     <h2 class="text-3xl font-bold">Create Account</h2>
-                    <p class="text-gray-400 mt-2">Join MovieTix today</p>
+                    <p class="text-gray-400 mt-2">Join Silver Screen Cinemas</p>
                 </div>
                 <div class="bg-cinema-800 rounded-2xl p-8 border border-white/5">
                     <form id="signup-form" onsubmit="return handleSignUp(event);">
@@ -374,8 +381,6 @@
     function setLocation(loc) {
         selectedLocation = loc;
         booking.location = loc;
-        document.getElementById('current-location').innerText = loc;
-        document.getElementById('movie-location').innerText = loc;
     }
 
 function updateHomeView() {
@@ -411,20 +416,37 @@ function updateHomeView() {
 
     function updateCinemas() {
         const list = document.getElementById('cinemas-list');
-        list.innerHTML = '';
-        const cinemas = {
-            'Abuja': ['Silverbird Galleria', 'Genesis Deluxe Cinemas', 'Filmhouse Cinemas Jabi', 'Wuse Cinema'],
-            'Lagos': ['Silverbird Lagos', 'Genesis Ikeja', 'Filmhouse Lekki', 'IMAX Lekki'],
-            'Port Harcourt': ['Silverbird PH', 'Genesis PH', 'Filmhouse PH'],
-            'Kano': ['Silver Bird Kano', 'Cinema Kano City', 'Kano Film House']
-        };
-        (cinemas[selectedLocation] || []).forEach(cinema => {
-            const div = document.createElement('div');
-            div.className = 'group cursor-pointer';
-            div.onclick = () => { booking.cinema = cinema; showView('details-view'); };
-            div.innerHTML = '<div class="relative aspect-[16/9] rounded-xl overflow-hidden mb-3 bg-cinema-800 flex items-center justify-center"><i data-lucide="map-pin" class="h-12 w-12 text-cinema-accent"></i></div><h3 class="font-bold text-lg truncate">' + cinema + '</h3><p class="text-sm text-gray-400">' + selectedLocation + '</p>';
-            list.appendChild(div);
-        });
+        list.innerHTML = `
+            <div class="max-w-4xl mx-auto bg-cinema-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="relative h-64 md:h-80">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&q=80" class="w-full h-full object-cover" alt="Silver Screen Cinemas">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cinema-800 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="text-3xl font-bold text-white mb-2">${CINEMA_NAME}</h3>
+                        <p class="text-gray-300 flex items-center"><i data-lucide="map-pin" class="h-5 w-5 mr-2 text-cinema-accent"></i> ${LOCATION}</p>
+                    </div>
+                </div>
+                <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 text-cinema-accent">About Us</h4>
+                        <p class="text-gray-400 mb-4">Experience movies like never before at Silver Screen Cinemas in Kano. Featuring state-of-the-art projection, immersive sound systems, and premium seating for the ultimate cinematic experience.</p>
+                        <div class="flex items-center space-x-4 text-sm text-gray-300">
+                            <span class="flex items-center"><i data-lucide="monitor" class="h-4 w-4 mr-2"></i> 4K Projection</span>
+                            <span class="flex items-center"><i data-lucide="speaker" class="h-4 w-4 mr-2"></i> Dolby Atmos</span>
+                            <span class="flex items-center"><i data-lucide="wifi" class="h-4 w-4 mr-2"></i> Free WiFi</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 text-cinema-accent">Contact & Hours</h4>
+                        <ul class="space-y-3 text-gray-400">
+                            <li class="flex items-start"><i data-lucide="clock" class="h-5 w-5 mr-3 mt-0.5"></i> <span>Daily: 10:00 AM - 11:00 PM</span></li>
+                            <li class="flex items-start"><i data-lucide="phone" class="h-5 w-5 mr-3 mt-0.5"></i> <span>+234 800 SILVER</span></li>
+                            <li class="flex items-start"><i data-lucide="mail" class="h-5 w-5 mr-3 mt-0.5"></i> <span>info@silverscreen.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        `;
         lucide.createIcons();
     }
 
@@ -447,14 +469,14 @@ function updateHomeView() {
     function generateQRCode() {
         const qr = document.getElementById('qrcode');
         qr.innerHTML = '';
-        const refNum = 'MTX-' + Date.now().toString().slice(-6);
-        const data = 'MovieTix Booking - Ref: ' + refNum + ' - ' + (booking.movie || 'Movie') + ' - ' + (booking.cinema || 'Cinema') + ' - Seats: ' + (booking.seats.join(', ') || 'None') + ' - ' + (booking.date || '') + ' ' + (booking.time || '');
+        const refNum = 'SSC-' + Date.now().toString().slice(-6);
+        const data = 'Silver Screen Cinemas - Ref: ' + refNum + ' - ' + (booking.movie || 'Movie') + ' - ' + CINEMA_NAME + ' - Seats: ' + (booking.seats.join(', ') || 'None') + ' - ' + (booking.date || '') + ' ' + (booking.time || '');
         new QRCode(qr, { text: data, width: 140, height: 140, colorDark:"#000000", colorLight:"#ffffff" });
 
         document.getElementById('confirm-movie').innerText = booking.movie || 'Selected Movie';
         document.getElementById('confirm-datetime').innerText = (booking.date || 'Date') + ', ' + (booking.time || 'Time');
         document.getElementById('confirm-seats').innerText = booking.seats.join(', ') || '—';
-        document.getElementById('confirm-hall').innerText = booking.cinema || '—';
+        document.getElementById('confirm-hall').innerText = CINEMA_NAME;
         document.getElementById('confirm-ref').innerText = refNum;
     }
 
@@ -640,11 +662,11 @@ function updateHomeView() {
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm text-gray-600 mb-2">System Name</label>
-                                <input type="text" value="MovieTix" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 text-gray-900">
+                                <input type="text" value="Silver Screen Cinemas" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 text-gray-900">
                             </div>
                             <div>
                                 <label class="block text-sm text-gray-600 mb-2">Support Email</label>
-                                <input type="email" value="support@movietix.com" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 text-gray-900">
+                                <input type="email" value="support@silverscreen.com" class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2 text-gray-900">
                             </div>
                             <div>
                                 <label class="block text-sm text-gray-600 mb-2">Ticket Price (₦)</label>
@@ -879,17 +901,19 @@ function updateHomeView() {
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center cursor-pointer" onclick="showView('home-view')">
                     <i data-lucide="film" class="h-8 w-8 text-cinema-accent mr-2"></i>
-                    <span class="text-xl font-bold tracking-tight">Movie<span class="text-cinema-accent">Tix</span></span>
+                    <span class="text-xl font-bold tracking-tight">Silver Screen <span class="text-cinema-accent">Cinemas</span></span>
                 </div>
 
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" onclick="showView('home-view')" class="text-gray-300 hover:text-white text-sm font-medium">Movies</a>
-                    <a href="#" onclick="showView('cinemas-view')" class="text-gray-300 hover:text-white text-sm font-medium">Cinemas</a>
+                    <a href="#" onclick="showView('cinemas-view')" class="text-gray-300 hover:text-white text-sm font-medium">The Cinema</a>
                     <a href="#" onclick="showView('offers-view')" class="text-gray-300 hover:text-white text-sm font-medium">Offers</a>
                 </nav>
 
                 <div class="flex items-center space-x-4">
-                    <button class="hidden md:block text-gray-400 hover:text-white"><i data-lucide="search" class="h-5 w-5"></i></button>
+                    <div class="hidden md:flex items-center text-sm text-gray-400">
+                        <i data-lucide="map-pin" class="h-4 w-4 mr-1"></i> Kano - Shoprite
+                    </div>
                     <button onclick="showView('auth-view')" class="hidden md:block bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium">Sign In</button>
                     <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white">
                         <i data-lucide="menu" class="h-6 w-6"></i>
@@ -901,28 +925,15 @@ function updateHomeView() {
         <div id="mobile-menu" class="hidden md:hidden bg-cinema-800 border-t border-white/10">
             <nav class="px-4 py-4 space-y-2">
                 <a href="#" onclick="showView('home-view')" class="block text-gray-300 hover:text-white py-2">Movies</a>
-                <a href="#" onclick="showView('cinemas-view')" class="block text-gray-300 hover:text-white py-2">Cinemas</a>
+                <a href="#" onclick="showView('cinemas-view')" class="block text-gray-300 hover:text-white py-2">The Cinema</a>
                 <a href="#" onclick="showView('offers-view')" class="block text-gray-300 hover:text-white py-2">Offers</a>
+                <div class="py-2 text-gray-400 text-sm flex items-center"><i data-lucide="map-pin" class="h-4 w-4 mr-2"></i> Kano - Shoprite</div>
                 <button onclick="showView('auth-view')" class="w-full bg-cinema-accent hover:bg-rose-700 px-4 py-2 rounded-lg text-sm font-medium mt-4">Sign In</button>
             </nav>
         </div>
     </header>
 
     <main id="home-view" class="app-view flex-1">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex items-center space-x-4">
-                <i data-lucide="map-pin" class="h-5 w-5 text-cinema-accent"></i>
-                <span class="text-sm font-medium">Location:</span>
-                <select onchange="setLocation(this.value)" class="bg-cinema-800 text-white rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-cinema-accent">
-                    <option value="Abuja" selected>Abuja</option>
-                    <option value="Lagos">Lagos</option>
-                    <option value="Port Harcourt">Port Harcourt</option>
-                    <option value="Kano">Kano</option>
-                </select>
-                <span id="current-location" class="text-sm text-gray-300">Abuja</span>
-            </div>
-        </div>
-
         <div class="relative h-96 overflow-hidden">
             <img id="hero-image" src="" class="w-full h-full object-cover opacity-60" alt="Hero">
             <div class="absolute inset-0 bg-gradient-to-t from-cinema-900 via-cinema-900/60 to-transparent flex items-end">
@@ -943,7 +954,7 @@ function updateHomeView() {
 
         <div class="max-w-7xl mx-auto px-4 py-12">
             <div class="flex justify-between items-end mb-8">
-                <h2 class="text-2xl font-bold">Now Showing in <span id="movie-location">Abuja</span></h2>
+                <h2 class="text-2xl font-bold">Now Showing at Silver Screen Cinemas</h2>
                 <div class="flex space-x-2">
                     <button class="p-2 rounded-full bg-white/5 hover:bg-white/10"><i data-lucide="chevron-left" class="h-5 w-5"></i></button>
                     <button class="p-2 rounded-full bg-white/5 hover:bg-white/10"><i data-lucide="chevron-right" class="h-5 w-5"></i></button>
@@ -1028,7 +1039,7 @@ function updateHomeView() {
                 </button>
                 <div class="text-center">
                     <h2 class="text-xl font-bold" id="seats-movie-title">Movie</h2>
-                    <p class="text-sm text-gray-400"><span id="seats-date">Date</span>, <span id="seats-time">Time</span> • <span id="seats-cinema">Hall</span></p>
+                    <p class="text-sm text-gray-400"><span id="seats-date">Date</span>, <span id="seats-time">Time</span> • <span id="seats-cinema">Silver Screen</span></p>
                 </div>
                 <div class="w-10"></div>
             </div>
@@ -1178,8 +1189,8 @@ function updateHomeView() {
             <button onclick="showView('home-view')" class="flex items-center text-gray-400 hover:text-white mb-8">
                 <i data-lucide="arrow-left" class="h-5 w-5 mr-2"></i> Back to Movies
             </button>
-            <h2 class="text-2xl font-bold mb-8">Cinemas in <span id="cinemas-location">Abuja</span></h2>
-            <div id="cinemas-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            <h2 class="text-2xl font-bold mb-8">Our Location</h2>
+            <div id="cinemas-list"></div>
         </div>
     </main>
 
@@ -1312,10 +1323,7 @@ function updateHomeView() {
                 document.getElementById('seats-movie-title').innerText = booking.movie || 'Movie';
                 document.getElementById('seats-date').innerText = booking.date || 'Date';
                 document.getElementById('seats-time').innerText = booking.time || 'Time';
-                document.getElementById('seats-cinema').innerText = booking.cinema || 'Hall';
-            }
-            if (viewId === 'cinemas-view') {
-                document.getElementById('cinemas-location').innerText = selectedLocation;
+                document.getElementById('seats-cinema').innerText = CINEMA_NAME;
             }
         };
     })(showView);
